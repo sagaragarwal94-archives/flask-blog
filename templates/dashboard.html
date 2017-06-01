@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Welcome {{current_user.email}}</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='navbar-top.css') }}">  </head>  </head>
+
+  <body>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-4">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{{url_for('dashboard')}}">Dashboard</a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+             <a class="nav-link" href="{{ url_for('index')}}">Home</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="{{ url_for('post', post_status = 'new')}}">New Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Welcome to Dashboard</h1>
+        <p class="lead"></p>
+        <a class="btn btn-lg btn-primary" href="" role="button"> Test Button &raquo;</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron">
+        
+      </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="{{ url_for('static', filename='jquery-3.2.1.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='tether.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+  </body>
+</html>

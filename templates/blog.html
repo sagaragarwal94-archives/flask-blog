@@ -1,0 +1,20 @@
+{% extends "admin.html" %}
+
+{% block admin %}
+      <form class="form-signin" method="POST">
+        <label for="example-text-input">Title</label>
+      	<input class="form-control" type="text" value="" name= "title" id="example-text-input" required="">
+        <label for="exampleTextarea">Enter Post Here</label>
+    	<textarea class="form-control" value = "" name= "text" id="exampleTextarea" rows="10" required=""></textarea>
+    	<label for="example-username-input">Username</label>
+      	<input class="form-control" type="text" value="" name= "username" id="example-username-input" required="">
+      	<label for="example-tag-input">Enter Tags (Seperated by Commas)</label>
+      	<input class="form-control" type="text" value="" name= "tag" id="example-tag-input" required="">
+		 <label class="form-check-label">
+		<input type="checkbox" name="draft" class="form-check-input">
+      	Save as Draft
+      	</label>
+         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+      </form>
+{% endblock %}

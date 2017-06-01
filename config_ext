@@ -1,0 +1,5 @@
+SQLALCHEMY_DATABASE_URI = "postgresql://username:password@localhost/database_name"
+
+SECRET_KEY = 'your-key'
+
+SQLALCHEMY_TRACK_MODIFICATIONS = <True/False>
