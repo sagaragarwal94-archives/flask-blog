@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required, UserMixin, AnonymousUserMixin
 # from werkzeug.security import generate_password_hash, check_password_hash
 import config as config
+import datetime
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
@@ -47,14 +48,16 @@ class Post(db.Model):
 	title = db.Column(db.String(120), unique = True)
 	username = db.Column(db.String(50))
 	text = db.Column(db.Text)
-	draft = db.Column(db.Boolean, default= True)
+	draft = db.Column(db.String(4), default= True)
 	date = db.Column(db.DateTime)
 	tags = db.Column(db.PickleType)
 
-	def __init__(self, title, username, text, tags):
+	def __init__(self, title, username, text, draft, date, tags):
 		self.title = title
 		self.username = username
 		self.text = text
+		self.draft = draft
+		self.date = date
 		self.tags = tags
 
 
@@ -108,13 +111,16 @@ def logout():
 @app.route('/post/<post_status>', methods = ['GET', 'POST'])
 @login_required
 def post(post_status):
-	if request.method == 'POST' and post_status == 'new':
-		title = request.form["title"]
-		text = request.form["text"]
-		username = request.form["username"]
-		tags = request.form["tags"]
-		draft = request.form["draft"]
-		print(title, text, username, tags, draft)
+	draft = 'off'
+	if request.method == 'POST':
+		blog_dict = request.form.to_dict()
+		title = blog_dict['title']
+		text = blog_dict['text']
+		username = blog_dict['username']
+		tags = blog_dict['tag']
+		post = Post(title, username, text, blog_dict['draft'], datetime.datetime.now(), tags)
+		db.session.add(post)
+		db.session.commit()
 		return redirect(url_for('dashboard'))
 	return render_template('blog.html')
 
